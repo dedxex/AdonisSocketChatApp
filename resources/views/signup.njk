@@ -1,0 +1,22 @@
+
+{% extends 'master' %}
+{% block content %}
+<div class="col-xs-6">
+    <h3>Signup</h3>
+    {{ form.open({action: 'UserController.store'}) }}
+
+    {{ csrfField }}
+
+    <fieldset class="form-group">
+      {{ form.text('username', null, { class: 'form-control',placeholder:"enter new username"}) }}
+    </fieldset>
+
+    <fieldset class="form-group">
+      {{ form.text('password', null, { class: 'form-control',placeholder:"enter new password here" }) }}
+    </fieldset>
+
+    {{ form.submit('create', 'create', { class: 'btn btn-primary' }) }}
+
+  {{ form.close() }}
+</div>
+{% endblock %}
