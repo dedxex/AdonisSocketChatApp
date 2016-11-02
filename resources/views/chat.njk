@@ -1,3 +1,5 @@
+{% extends 'master' %}
+{% block content %}
 <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
       body { font: 13px Helvetica, Arial; }
@@ -17,23 +19,50 @@
 
 <script>
   $(document).ready(function(){
-    $('button').click(function() {
-    console.log("clicked");
-  });
    $('form').submit(function(){
-        console.log("the form is submitted");
-        socket.emit('message', $('#m').val());
+        var user_name=$('#from').val();
+        var to_user=$('#to').val();
+        var msg = $('#m').val();
+        console.log("the form is submitted by "+user_name+" to "+to_user+" and the message is "+msg);
+        var data_server={
+		    		id:to_user,
+		    		msg:msg,
+		    		name:user_name
+		    	};
+        socket.emit('message',data_server);
         $('#m').val('');
         return false;
   });
-  socket.on('message', function(msg){
-        console.log("The message is "+msg);
-        $('#messages').append($('<li>').text(msg));
+  socket.on('message', function(data_server){
+    console.log("the message is sent");
+    $('#chatmessages').append($('<li>').text(data_server.msg));
   });
 });
   
 </script>
-    <ul id="messages"></ul>
+<div class="container">
+  <div class="form-group">
+    <label for="From">From</label>
+    <select class="form-control" id="from">
+       {% for user in users %}
+        <option>{{user.username}}</option>
+        {% endfor %}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="To">To</label>
+    <select class="form-control" id="to">
+       {% for user in users %}
+        <option>{{user.username}}</option>
+        {% endfor %}
+    </select>
+  </div>
+    </div>
+    <div class="container">
+      <h4>messages</h4>
+      <ul id="chatmessages"></ul>
+    </div>
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
     </form>
+{% endblock %}

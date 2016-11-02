@@ -8,6 +8,10 @@ class UserController {
   * create (request,response) {
       yield response.sendView('signup');
   }
+  * chat (request,response) {
+      const users = yield User.all();
+      yield response.sendView('chat',{ users : users.toJSON() });
+  }
   * store(request,response) {
       const userData = request.only('username', 'password');
       yield User.create(userData);

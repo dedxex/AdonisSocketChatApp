@@ -3,14 +3,8 @@
 {% block content %}
 <div class="container">
     <h3>Login</h3>
-    <div class="container">
-        {% for user in users %}
-        <h2>{{user.username}}</h2>
-        {% endfor %}
-    </div>
-    <h3>Login</h3>
    <div class="col-xs-6">
-        {{ form.open({action: 'UserController.loginUser'}) }}
+        {{ form.open({action: ''}) }}
 
     {{ csrfField }}
 
