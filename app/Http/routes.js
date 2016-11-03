@@ -22,3 +22,4 @@ Route.get('login', 'UserController.index');
 Route.get('user/signup','UserController.create');
 Route.get('user','UserController.store');
 Route.get('chat','UserController.chat');
+Route.get('loginuser','UserController.login');

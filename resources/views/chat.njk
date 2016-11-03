@@ -21,7 +21,7 @@
   $(document).ready(function(){
    $('form').submit(function(){
         var user_name=$('#from').val();
-        var to_user=$('#to').val();
+        var to_user={% yield request.session.get('username') %};
         var msg = $('#m').val();
         console.log("the form is submitted by "+user_name+" to "+to_user+" and the message is "+msg);
         var data_server={
@@ -41,14 +41,7 @@
   
 </script>
 <div class="container">
-  <div class="form-group">
-    <label for="From">From</label>
-    <select class="form-control" id="from">
-       {% for user in users %}
-        <option>{{user.username}}</option>
-        {% endfor %}
-    </select>
-  </div>
+
   <div class="form-group">
     <label for="To">To</label>
     <select class="form-control" id="to">
