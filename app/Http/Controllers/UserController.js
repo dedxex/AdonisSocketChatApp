@@ -10,8 +10,13 @@ class UserController {
       yield response.sendView('signup');
   }
   * chat (request,response) {
-      const users = yield User.all();
-      yield response.sendView('chat',{ users : users.toJSON() });
+      const usertest = yield User.all();
+      const users = usertest.toJSON();
+      const loggedUser =  yield request.session.get('username');
+      users.loggedUser=loggedUser;
+      console.log("the logged user is "+users.loggedUser);
+      users.loggedUser = loggedUser;
+      yield response.sendView('chat',{ users : users });
   }
   * login (request,response) {
       const data = request.only('username', 'password');

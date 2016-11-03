@@ -20,8 +20,9 @@
 <script>
   $(document).ready(function(){
    $('form').submit(function(){
-        var user_name=$('#from').val();
-        var to_user={% yield request.session.get('username') %};
+        var to_user=$('#to').val();
+        var test = "{{users}}";
+        var user_name="{{users.loggedUser}}";
         var msg = $('#m').val();
         console.log("the form is submitted by "+user_name+" to "+to_user+" and the message is "+msg);
         var data_server={
