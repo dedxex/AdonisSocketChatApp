@@ -21,29 +21,12 @@
   $(document).ready(function(){
     var user_name="{{users.loggedUser}}";
     socket.emit('register',user_name);
-//    $('form').submit(function(){
 
-//         //socket.emit('messag',data_server);
-//   });
-  
-//   socket.on('message', function(data_server){
-//     console.log("the message is sent");
-//     $('#chatmessages').append($('<li>').text(data_server.msg));
-//   });
-
-  // $('form').submit(function(){
-  //   socket.emit('chat message', $('#m').val());
-  //   $('#m').val('');
-  //   return false;
-  // });
-  // socket.on('chat message', function(msg){
-  //   $('#messages').append($('<li>').text(msg));
-  // });
   $('form').submit(function(){
     /////////////////
     var to_user = $('#to').val();
     var test = "{{users}}";
-    //socket.emit('register',user_name);
+    
     var msg = $('#m').val();
     console.log("the form is submitted by " + user_name + " to " + to_user + " and the message is " + msg);
     var data_server = {
