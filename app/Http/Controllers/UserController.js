@@ -4,6 +4,7 @@ const Database = use('Database');
 class UserController {
     * index (request, response) {
         const users = yield User.all();
+        console.log("hmmmmmmmmm");
     yield response.sendView('login',{ users : users.toJSON() });
   }
   * create (request,response) {

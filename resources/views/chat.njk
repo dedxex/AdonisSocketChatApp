@@ -43,6 +43,18 @@
     console.log("the message reived by client is "+msg);
     $('#messages').append($('<li>').text(msg));
   });
+  socket.on('conversation',function(msgs) {
+    console.log("conversation event on client triggred with responce "+msgs);
+    
+    $.each(msgs, function(index, value){
+      $('#messages').append($('<li>').text(value.message));
+      console.log(value)
+    })
+
+    //console.log(msg);
+    //
+
+  })
 
   });
 </script>
@@ -63,7 +75,12 @@
       <h4>messages</h4>
       <ul id="messages"></ul>
     </div>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
+    {{ form.open({ action:'MessageController.store' }) }}
+      {{ csrfField }}
+      <input name="message" id="m" autocomplete="off" />
+      <input name="to" type="hidden" value={{data_server.id}}/>
+      <input name="from" type="hidden" value={{data_server.name}}/>
+      <button type="submit" >send</button>
+    {{ form.close() }}
+    
 {% endblock %}
